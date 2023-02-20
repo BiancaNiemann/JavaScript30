@@ -14,7 +14,7 @@ function handleCheck(e){
             if(inBetween){
                 checkbox.checked = true
             }
-        })
+        })javjave
     }
     
     lastChecked= this
