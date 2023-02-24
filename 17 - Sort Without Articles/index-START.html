@@ -6,7 +6,7 @@
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
 <body>
-
+  
   <style>
     body {
       margin: 0;
@@ -49,6 +49,54 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+const bandsEl = document.getElementById('bands')
+
+let articleRemovedArr = []
+let articleReturnArr = []
+
+function sortBands(bandNames){
+
+  bandNames.map(item => {
+    if (item.startsWith("The ")){ //|| item.startsWith("A")  || item.startsWith("An") 
+      let newWord = item.slice(4, item.length) + " The "
+      articleRemovedArr.push(newWord)
+    } else if (item.startsWith("A ")) {
+      let newWord = item.slice(2, item.length) + " A "
+      articleRemovedArr.push(newWord)
+    } else if (item.startsWith("An ")) {
+      let newWord = item.slice(3, item.length) + " An "
+      articleRemovedArr.push(newWord)
+    } else {
+      articleRemovedArr.push(item)
+    }
+  })
+
+  let sorted = articleRemovedArr.sort()
+
+  sorted.map(item => {
+    if (item.endsWith("The ")){ 
+      let newWord = "The " + item.slice(0, item.length - 4) 
+      articleReturnArr.push(newWord)
+    } else if (item.endsWith("A ")) {
+      let newWord = "A " + item.slice(0, item.length - 2) 
+      articleReturnArr.push(newWord)
+    } else if (item.endsWith("An ")) {
+      let newWord = "An " + item.slice(0, item.length - 3) 
+      articleReturnArr.push(newWord)
+    } else {
+      articleReturnArr.push(item)
+    }
+  })
+
+}
+sortBands(bands)
+
+articleReturnArr.map(item => {
+  let html = ''
+  html = `<li>${item}</li>`
+
+  bandsEl.innerHTML += html
+})
 
 </script>
 
